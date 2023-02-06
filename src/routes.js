@@ -2,6 +2,7 @@ const router = require('express').Router();
 
 const cubeController = require('./controllers/cubeController');
 const homeController = require('./controllers/homeController');
+const accessoryController = require('./controllers/accessoryControlller');
 
 
 
@@ -16,5 +17,8 @@ router.post('/create', cubeController.postCreateCube);
 router.get('/details/:cubeId', cubeController.getCubeDetails);
 
 
+// other way of setting the routers
+
+router.use('/accessory', accessoryController);
 
 module.exports = router;
