@@ -2,15 +2,19 @@ const express = require('express');
 
 const routes = require('./routes');
 const config = require('./config');
-const setupViewEngine  = require('./config/viewEngine');
-
+const setupViewEngine = require('./config/viewEngine');
+const initDatabase = require('./config/db');
 
 const app = express();
 setupViewEngine(app);
 
 app.use(express.static('src/public'));
-app.use(express.urlencoded({extended: false}));
+// urlencoded middleware out of the box from express, needs oo be added for sure,
+//  go through all requst to read for data needs to be parsed
+
+app.use(express.urlencoded({ extended: false }));
 app.use(routes);
 
-
-app.listen(config.PORT, ()=> console.log(`Server is running on port ${config.PORT}...`));
+initDatabase()
+    .then(() => app.listen(config.PORT, () => console.log(`Server is running on port ${config.PORT}...`)))
+    .catch((err) => console.error(err));
