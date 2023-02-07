@@ -8,8 +8,8 @@ const accessorySchema = new mongoose.Schema({
     }, 
     imageUrl: {
         type: String,
-        required: true
-        // http/https validation
+        required: true,
+        match: /^https?:\/\//
     },
     description: {
         type: String,
