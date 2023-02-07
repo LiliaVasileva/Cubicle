@@ -9,8 +9,8 @@ router.get('/create', (req, res) => {
 router.post('/create', async (req, res) => {
     const { name, imageUrl, description } = req.body;
 
-    const accessory = await new Accessory({name, imageUrl, description});
-    
+    const accessory = await new Accessory({ name, imageUrl, description });
+
     // await Accessory.create({ame, imageUrl, description}}); one more way to creare items
 
     accessory.save();
@@ -18,5 +18,7 @@ router.post('/create', async (req, res) => {
     res.redirect('/')
 
 });
+
+
 
 module.exports = router;
