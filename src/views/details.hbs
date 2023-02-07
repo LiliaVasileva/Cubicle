@@ -8,8 +8,8 @@
         <a class="btn" href="/details/{{cube._id}}/attach">Attach</a>
     </div>
     <h2>Accessories</h2>
-    {{#if accessories }}
-    {{#each accessories}}
+    {{#if cube.accessories }}
+    {{#each cube.accessories}}
     {{>accessorie}}
     {{/each}}
     {{else}}

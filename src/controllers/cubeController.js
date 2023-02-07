@@ -19,8 +19,7 @@ exports.postCreateCube = async (req, res) => {
 
 exports.getCubeDetails = async (req, res) => {
 
-    const cube = await Cube.findById(req.params.cubeId).lean();
-
+    const cube = await Cube.findById(req.params.cubeId).populate('accessories').lean();
 
     if (!cube) {
         return res.redirect('/404');
@@ -45,7 +44,7 @@ exports.postAttachAccessory = async (req, res) => {
     const cube = await Cube.findById(req.params.cubeId);
     const accessoryId = req.body.accessory;
     cube.accessories.push(accessoryId);
-    cube.save();
+    await cube.save();
 
     res.redirect(`/details/${cube._id}`)
 
