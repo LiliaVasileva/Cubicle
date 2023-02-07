@@ -15,7 +15,15 @@ const cubeSchema = new mongoose.Schema({
     imageUrl: {
         type: String,
         required: true,
-        // add http/https valid
+        // regx validation with match
+        // match: /^https?:\/\//,
+        // validator with validate
+        validate: {
+            validator: function (value) {
+                return /^https?:\/\//.test(value)
+            },
+            message: props => `${props.value} is not a valid url path!`
+        }
     },
     difficultyLevel: {
         type: Number,
